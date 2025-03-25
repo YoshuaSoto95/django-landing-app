@@ -1,0 +1,28 @@
+#conversionChart {
+    background: rgba(10, 10, 18, 0.7);
+    border-radius: 50%;
+}
+
+.stat-item {
+    padding: 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.stat-item h4 {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.value {
+    font-size: 1.8em;
+    font-weight: bold;
+    display: block;
+}

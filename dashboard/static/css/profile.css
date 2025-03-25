@@ -1,0 +1,35 @@
+.profile-image {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--neon-pink);
+}
+
+.neon-cyan {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.neon-pink {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+.cyber-modal {
+    background: var(--cyber-dark);
+    border: 2px solid var(--neon-pink);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+}
+
+.cyber-input {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--neon-cyan) !important;
+    color: white !important;
+}
+
+dt.col-sm-3 {
+    font-weight: 700;
+}

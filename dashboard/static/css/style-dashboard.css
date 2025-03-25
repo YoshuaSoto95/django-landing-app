@@ -1,0 +1,178 @@
+:root {
+    --neon-cyan: #0ff;
+    --neon-pink: #f0f;
+    --cyber-dark: #0a0a12;
+    --cyber-gradient: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
+}
+
+body {
+    background-color: var(--cyber-dark);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
+}
+
+/* Bootstrap Overrides */
+.bg-primary {
+    background: var(--neon-pink)!important;
+}
+
+.bg-secondary {
+    background: var(--neon-cyan)!important;
+}
+
+/* Custom Sidebar */
+.main-sidebar {
+    background: var(--cyber-dark)!important;
+    border-right: 2px solid var(--neon-pink);
+}
+
+.brand-link {
+    border-bottom: 3px solid var(--neon-cyan)!important;
+    background: var(--cyber-dark)!important;
+}
+
+.nav-sidebar .nav-link {
+    color: #fff!important;
+    position: relative;
+    margin: 5px 0px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-sidebar .nav-link:hover {
+    background: var(--cyber-gradient)!important;
+    color: #000!important;
+    transform: translateX(10px);
+}
+
+.nav-sidebar .nav-link.active {
+    background: var(--cyber-gradient)!important;
+    box-shadow: 0 0 15px var(--neon-pink);
+    font-weight: bold;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    background: var(--cyber-dark)!important;
+    border: 1px solid var(--neon-pink)!important;
+    box-shadow: 0 0 15px rgba(240, 0, 255, 0.3);
+}
+
+.dropdown-item {
+    color: #fff!important;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background: var(--cyber-gradient)!important;
+    color: #000!important;
+    transform: translateX(5px);
+}
+
+/* Modal Custom Styles */
+.modal-content {
+    background: var(--cyber-dark);
+    color: #fff;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--neon-cyan);
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+/* User Icon Hover Effect */
+.navbar .fa-user-circle {
+    transition: all 0.3s ease;
+}
+
+.navbar .fa-user-circle:hover {
+    filter: drop-shadow(0 0 5px var(--neon-cyan));
+    transform: scale(1.1);
+}
+
+/* Top Navigation */
+.main-header {
+    background: var(--cyber-gradient)!important;
+    border-bottom: 3px solid var(--neon-cyan);
+}
+
+/* Custom Cards */
+.card {
+    background: rgba(10, 10, 18, 0.9)!important;
+    border: 1px solid var(--neon-pink);
+    box-shadow: 0 0 20px rgba(240, 0, 255, 0.2);
+}
+
+.card-header {
+    border-bottom: 2px solid var(--neon-cyan)!important;
+    background: var(--cyber-dark)!important;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--neon-pink)!important;
+    border: none;
+    color: #000!important;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 15px var(--neon-pink);
+    transform: scale(1.05);
+}
+
+/* Tables */
+.table {
+    color: #fff!important;
+    border: 1px solid var(--neon-pink);
+}
+
+.table thead {
+    background: var(--cyber-gradient)!important;
+    color: #000;
+}
+
+/* Form Elements */
+.form-control {
+    background: rgba(255,255,255,0.1)!important;
+    border: 1px solid var(--neon-cyan)!important;
+    color: #fff!important;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 10px var(--neon-cyan)!important;
+}
+
+/* content */ 
+
+.content-wrapper {
+    background-color: #000;
+}
+
+/* Estilos adicionales para el gráfico y paginación */
+#conversionChart {
+    background: rgba(10, 10, 18, 0.7);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+#paginationInfo {
+    color: var(--neon-cyan);
+    font-size: 0.9em;
+    padding-right: 15px;
+}
+
+/* Estilo para la tabla paginada */
+.table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.02);
+}

@@ -1,0 +1,32 @@
+/* User Table */
+.table th {
+    background: var(--cyber-gradient)!important;
+    color: #000!important;
+}
+
+.badge.bg-primary {
+    background: var(--neon-pink)!important;
+    color: #000!important;
+}
+
+.badge.bg-success {
+    background: var(--neon-cyan)!important;
+    color: #000!important;
+}
+
+.btn-edit, .btn-delete {
+    background: none!important;
+    border: 1px solid transparent;
+    margin: 0 3px;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    border-color: var(--neon-cyan);
+    transform: rotate(15deg);
+}
+
+.btn-delete:hover {
+    border-color: var(--neon-pink);
+    transform: scale(1.2);
+}

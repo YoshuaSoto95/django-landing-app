@@ -1,0 +1,42 @@
+/* Tabla */
+.table th {
+    background: var(--cyber-gradient)!important;
+    color: #000!important;
+    border-bottom: 2px solid var(--neon-cyan)!important;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.btn-edit, .btn-delete {
+    background: none!important;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    border-color: var(--neon-cyan);
+    transform: rotate(15deg);
+}
+
+.btn-delete:hover {
+    border-color: var(--neon-pink);
+    transform: scale(1.2);
+}
+
+.page-link {
+    background: var(--cyber-dark)!important;
+    color: var(--neon-cyan)!important;
+    border: 1px solid var(--neon-pink)!important;
+}
+
+.page-link:hover {
+    background: var(--cyber-gradient)!important;
+    color: #000!important;
+}
+
+.text-neon-cyan {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}

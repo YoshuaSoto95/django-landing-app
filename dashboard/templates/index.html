@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!-- Content Header -->
+<section class="content-header">
+    <div class="container-fluid">
+        <h1>Lead Metrics</h1>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Modificar la sección de Conversion Rate -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversion Rate</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="conversionChart" style="height: 250px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recent Leads</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table" id="leadsTable">
+                            <thead>
+                                <tr>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Type Plan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>john@synthwave.com</td>
+                                    <td><span class="badge bg-primary">Basic</span></td>
+                                </tr>
+                                <!-- Agregar más datos de ejemplo -->
+                                <tr>
+                                    <td>Jane Smith</td>
+                                    <td>jane@cyber.com</td>
+                                    <td><span class="badge bg-primary">Enterprice</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Mike Johnson</td>
+                                    <td>mike@neon.com</td>
+                                    <td><span class="badge bg-primary">Basic</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Sarah Connor</td>
+                                    <td>sarah@tech.com</td>
+                                    <td><span class="badge bg-primary">Enterprice</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Alex Mercer</td>
+                                    <td>alex@synth.com</td>
+                                    <td><span class="badge bg-primary">Pro</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Emma Davis</td>
+                                    <td>emma@wave.com</td>
+                                    <td><span class="badge bg-primary">Pro</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-end mt-2" id="paginationInfo"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

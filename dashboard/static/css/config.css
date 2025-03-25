@@ -1,0 +1,45 @@
+/* Config Page Specific Styles */
+.cyber-card {
+    background: rgba(10, 10, 18, 0.9);
+    border: 1px solid var(--neon-pink);
+    box-shadow: 0 0 20px rgba(240, 0, 255, 0.1);
+}
+
+.cyber-check .form-check-input {
+    background-color: var(--cyber-dark);
+    border: 1px solid var(--neon-cyan);
+}
+
+.cyber-check .form-check-input:checked {
+    background-color: var(--neon-pink);
+    border-color: var(--neon-cyan);
+}
+
+.cyber-range::-webkit-slider-thumb {
+    background: var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.btn-outline-cyan {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-cyan:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.btn-outline-pink {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-pink:hover {
+    background: var(--neon-pink);
+    color: #000;
+    box-shadow: 0 0 15px var(--neon-pink);
+}
