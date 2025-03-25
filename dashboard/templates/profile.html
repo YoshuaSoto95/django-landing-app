@@ -2,6 +2,14 @@
 
 {% block content %}
 
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
 <div class="row">
     <div class="col-md-12 col-12">
         <section class="content-header">
@@ -36,8 +44,12 @@
                                     </button>
                                     <input type="file" id="avatarInput" hidden>
                                 </div>
-                                <h3 class="mt-3 neon-text">John Cyber</h3>
-                                <p class="text-muted">Administrator</p>
+                                <h3 class="mt-3 neon-text">{{ user.first_name }} {{ user.last_name }} </h3>
+                                {% if user.is_superuser %}
+                                    <p class="text-muted">Administrator</p>
+                                {% else %}
+                                    <p class="text-muted">Basic</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -50,13 +62,13 @@
                             <div class="card-body">
                                 <dl class="row">
                                     <dt class="col-sm-3 neon-cyan">Email:</dt>
-                                    <dd class="col-sm-9">john@synthwave.com</dd>
+                                    <dd class="col-sm-9">{{ user.email }}</dd>
 
                                     <dt class="col-sm-3 neon-cyan">Joined:</dt>
-                                    <dd class="col-sm-9">January 1, 2024</dd>
+                                    <dd class="col-sm-9">{{ user.date_joined }}</dd>
 
                                     <dt class="col-sm-3 neon-cyan">Last Login:</dt>
-                                    <dd class="col-sm-9">1 hour ago</dd>
+                                    <dd class="col-sm-9">{{ user.last_login|default:"N/A" }}</dd>
                                 </dl>
                                 
                                 <button class="btn btn-primary" 
@@ -70,8 +82,55 @@
                 </div>
             </div>
         </section>
+        <!-- Password Change Modal -->
+        <div class="modal fade" id="passwordModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content cyber-modal">
+                    <div class="modal-header">
+                        <h5 class="modal-title neon-cyan">
+                            <i class="fas fa-key"></i> Change Password
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="passwordForm" action="{% url 'dashboard:change_password' user.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="form-label neon-pink">Current Password</label>
+                                <input type="password" name="password"
+                                        class="form-control cyber-input" 
+                                        required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label neon-pink">New Password</label>
+                                <input type="password" name="password1" 
+                                        class="form-control cyber-input" 
+                                        required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label neon-pink">Confirm New Password</label>
+                                <input type="password" name="password2" 
+                                        class="form-control cyber-input" 
+                                        required>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" 
+                                class="btn btn-secondary" 
+                                data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" 
+                                class="btn btn-primary" 
+                                form="passwordForm">
+                            Update Password
+                        </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>
 
 {% endblock %}

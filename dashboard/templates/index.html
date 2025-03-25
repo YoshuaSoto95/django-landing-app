@@ -32,55 +32,51 @@
                     </div>
                 </div>
             </div>
+
+
+
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Recent Leads</h3>
+                        <h3 class="card-title">User Plans</h3>
                     </div>
                     <div class="card-body">
-                        <table class="table" id="leadsTable">
-                            <thead>
-                                <tr>
-                                    <th>Full Name</th>
-                                    <th>Email</th>
-                                    <th>Type Plan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>John Doe</td>
-                                    <td>john@synthwave.com</td>
-                                    <td><span class="badge bg-primary">Basic</span></td>
-                                </tr>
-                                <!-- Agregar más datos de ejemplo -->
-                                <tr>
-                                    <td>Jane Smith</td>
-                                    <td>jane@cyber.com</td>
-                                    <td><span class="badge bg-primary">Enterprice</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Mike Johnson</td>
-                                    <td>mike@neon.com</td>
-                                    <td><span class="badge bg-primary">Basic</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Sarah Connor</td>
-                                    <td>sarah@tech.com</td>
-                                    <td><span class="badge bg-primary">Enterprice</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Alex Mercer</td>
-                                    <td>alex@synth.com</td>
-                                    <td><span class="badge bg-primary">Pro</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Emma Davis</td>
-                                    <td>emma@wave.com</td>
-                                    <td><span class="badge bg-primary">Pro</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="text-end mt-2" id="paginationInfo"></div>
+                        <div class="table-responsive">
+                            <table class="table" id="plansTable">
+                                <thead>
+                                    <tr>
+                                        <th>Fullname</th>
+                                        <th>Email</th>
+                                        <th>Plan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Datos generados por JS -->
+                                </tbody>
+                            </table>
+                            
+                            <!-- Paginación -->
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <span id="paginationInfo" class="text-neon-cyan"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-flex justify-content-end">
+                                        <ul class="pagination">
+                                            <li class="page-item">
+                                                <button class="page-link" id="prevPage">Previous</button>
+                                            </li>
+                                            <li class="page-item disabled">
+                                                <span class="page-link" id="currentPage">1</span>
+                                            </li>
+                                            <li class="page-item">
+                                                <button class="page-link" id="nextPage">Next</button>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,6 +84,97 @@
     </div>
 </section>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const plans = [
+            {% for lead in leads %}
+                { fullname: "{{ lead.fullname }}", email: "{{ lead.email }}", plan: "{{ lead.plan }}" }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+    
+        const tableBody = document.querySelector('#plansTable tbody');
+        const rowsPerPage = 5;
+        let currentPage = 1;
+    
+        function generateTableRows(data) {
+            tableBody.innerHTML = data.map(user => `
+                <tr>
+                    <td>${user.fullname}</td>
+                    <td>${user.email}</td>
+                    <td><span class="badge ${getPlanBadge(user.plan)}">${user.plan}</span></td>
+                </tr>
+            `).join('');
+        }
+    
+        function getPlanBadge(plan) {
+            const plans = {
+                'Free': 'bg-primary',
+                'Pro': 'bg-secondary',
+                'Enterprise': 'bg-success'
+            };
+            return plans[plan] || 'bg-primary';
+        }
+    
+        function updatePagination() {
+            const totalPages = Math.ceil(plans.length / rowsPerPage);
+            const start = (currentPage - 1) * rowsPerPage + 1;
+            const end = Math.min(currentPage * rowsPerPage, plans.length);
+            
+            document.getElementById('currentPage').textContent = currentPage;
+            document.getElementById('paginationInfo').textContent = 
+                `Showing ${start} to ${end} of ${plans.length} entries`;
+                
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = currentPage === totalPages;
+        }
+    
+        function updateTable() {
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedData = plans.slice(start, end);
+            
+            generateTableRows(paginatedData);
+            updatePagination();
+        }
+    
+        document.getElementById('prevPage').addEventListener('click', () => {
+            if(currentPage > 1) {
+                currentPage--;
+                updateTable();
+            }
+        });
+    
+        document.getElementById('nextPage').addEventListener('click', () => {
+            if(currentPage < Math.ceil(plans.length / rowsPerPage)) {
+                currentPage++;
+                updateTable();
+            }
+        });
+    
+        // Inicializar
+        updateTable();
+    });
 
+    document.querySelectorAll('.btn-delete').forEach(button => {
+        button.addEventListener('click', function() {
+            const leadId = this.getAttribute('data-id');
+            fetch(`/dashboard/delete_lead/${leadId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Lead deleted successfully!");
+                    location.reload();
+                }
+            });
+        });
+    });
+    
+    </script>
 
 {% endblock %}

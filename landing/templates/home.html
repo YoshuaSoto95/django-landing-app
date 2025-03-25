@@ -185,7 +185,7 @@
                 </div>
             </div>
             
-            <form id="leadForm" class="cyber-form" method="POST">
+            <form id="leadForm" class="cyber-form" action="{% url 'landing:capture_lead' %}" method="POST">
                 {% csrf_token %}
                 
                 <div class="cyber-form-container">
@@ -194,7 +194,7 @@
                         <div class="col-md-6">
                             <div class="input-group cyber-input">
                                 <span class="input-icon neon-cyan"><i class="fas fa-user-astronaut"></i></span>
-                                <input type="text" class="form-control cyber-field" name="name" 
+                                <input type="text" class="form-control cyber-field" name="fullname" 
                                        placeholder="Nombre completo" required>
                                 <div class="glow-bar"></div>
                             </div>
@@ -226,9 +226,9 @@
                                 <span class="input-icon neon-pink"><i class="fas fa-network-wired"></i></span>
                                 <select class="form-select cyber-select" name="plan" required>
                                     <option value="">Selecciona tu plan de acceso</option>
-                                    <option value="basic">Básico 100Mbps</option>
-                                    <option value="pro">Pro 500Mbps</option>
-                                    <option value="enterprise">Enterprise 1Gbps</option>
+                                    <option value="Basic">Básico 100Mbps</option>
+                                    <option value="Pro">Pro 500Mbps</option>
+                                    <option value="Enterprise">Enterprise 1Gbps</option>
                                 </select>
                                 <div class="glow-bar"></div>
                             </div>

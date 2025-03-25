@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
         
 // Paginación de tabla
-const table = document.getElementById('leadsTable');
+const table = document.getElementById('leadsTableUpdate');
 const rows = table.tBodies[0].rows;
-const rowsPerPage = 4;
+const rowsPerPage = 5;
 let currentPage = 1;
 
 function updateTable() {

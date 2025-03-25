@@ -330,6 +330,10 @@ body {
     transition: all 0.3s;
 }
 
+.cyber-field input, .cyber-input {
+    color: var(--neon-cyan) !important;
+}
+
 .cyber-field:focus, .cyber-select:focus {
     border-color: var(--neon-pink) !important;
     box-shadow: 0 0 15px rgba(255, 0, 255, 0.2) !important;

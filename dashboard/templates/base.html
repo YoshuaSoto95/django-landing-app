@@ -20,6 +20,7 @@
         <!-- Custom Styles -->
         <link rel="stylesheet" href="{% static 'css/style-dashboard.css' %}">
         <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'css/table.css' %}">
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -81,7 +82,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="leads.html" class="nav-link">
+                                <a href="{% url 'dashboard:leads' %}" class="nav-link">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>Leads</p>
                                 </a>
