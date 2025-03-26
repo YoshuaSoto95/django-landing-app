@@ -88,7 +88,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         const plans = [
             {% for lead in leads %}
-                { fullname: "{{ lead.fullname }}", email: "{{ lead.email }}", plan: "{{ lead.plan }}" }{% if not forloop.last %},{% endif %}
+                { 
+                fullname: "{{ lead.fullname }}", 
+                email: "{{ lead.email }}", 
+                plan: "{{ lead.plan }}" 
+            }{% if not forloop.last %},{% endif %}
             {% endfor %}
         ];
     
