@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 pt-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Marketing Analytics</h3>
+                        <div class="card-tools">
+                            <select class="form-select cyber-select" id="timeRange">
+                                <option value="7">Last 7 Days</option>
+                                <option value="30">Last 30 Days</option>
+                                <option value="365">Last Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="combinedChart" style="height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Conversion Rate</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="conversionChart" style="height: 200px;"></canvas>
+                            <div class="text-center mt-3">
+                                <h2 class="neon-pink" id="conversionRate">0%</h2>
+                                <p>Lead to Customer Conversion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Quick Stats</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="stat-item neon-cyan">
+                                <i class="fas fa-users fa-2x"></i>
+                                <h4>Total Visits</h4>
+                                <span class="value" id="totalVisits">0</span>
+                            </div>
+                            <div class="stat-item neon-pink mt-3">
+                                <i class="fas fa-chart-line fa-2x"></i>
+                                <h4>Cost per Lead</h4>
+                                <span class="value">$<span id="costPerLead">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

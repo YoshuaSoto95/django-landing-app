@@ -21,6 +21,9 @@
         <link rel="stylesheet" href="{% static 'css/style-dashboard.css' %}">
         <link rel="stylesheet" href="{% static 'css/profile.css' %}">
         <link rel="stylesheet" href="{% static 'css/table.css' %}">
+        <link rel="stylesheet" href="{% static 'css/users.css' %}">
+        <link rel="stylesheet" href="{% static 'css/analytics.css' %}">
+        <link rel="stylesheet" href="{% static 'css/config.css' %}">
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -51,7 +54,7 @@
                                 <a href="{% url 'dashboard:profile' %}" class="dropdown-item text-white">
                                     <i class="fas fa-user me-2"></i> Profile
                                 </a>
-                                <a href="#" class="dropdown-item text-white">
+                                <a href="{% url 'dashboard:config_profile' %}" class="dropdown-item text-white">
                                     <i class="fas fa-cog me-2"></i> Config
                                 </a>
                                 <div class="dropdown-divider"></div>
@@ -88,17 +91,20 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="analytics.html" class="nav-link">
+                                <a href="{% url 'dashboard:analytics' %}" class="nav-link">
                                     <i class="nav-icon fas fa-chart-bar"></i>
                                     <p>Analytics</p>
                                 </a>
                             </li>
+                            {% if user.is_superuser == 1 %}
                             <li class="nav-item">
-                                <a href="users.html" class="nav-link">
+                                <a href="{% url 'dashboard:users' %}" class="nav-link">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>Users</p>
                                 </a>
                             </li>
+                            {% else %}
+                            {% endif %}
                         </ul>
                     </nav>
                 </div>
@@ -118,6 +124,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{% static 'js/script-dashboard.js' %}"></script>
+    <script src="{% static 'js/users.js' %}"></script>
+    <script src="{% static 'js/analytics.js' %}"></script>
 
     <!-- Agregar al final del body antes de los scripts -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">

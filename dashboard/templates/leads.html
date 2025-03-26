@@ -92,7 +92,10 @@
                             <th>Plan</th>
                             <th>Location</th>
                             <th>Created At</th>
+                            {% if user.is_superuser == 1 %}
                             <th>Actions</th>
+                            {% else %}
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody>
@@ -106,6 +109,7 @@
                             <td>{{ lead.plan }}</td>
                             <td>{{ lead.location }}</td>
                             <td>{{ lead.created_at }}</td>
+                            {% if user.is_superuser == 1 %}
                             <td>
                                 <button class="btn btn-sm btn-edit" 
                                         data-bs-toggle="modal" 
@@ -118,6 +122,8 @@
                                     <i class="fas fa-trash text-danger"></i>
                                 </button>
                             </td>
+                            {% else %}
+                            {% endif %}
                         </tr>
                         {% endfor %}
                     </tbody>
