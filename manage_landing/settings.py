@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG = RENDER_INTERNAL_HOSTNAME = os.environ.get('RENDER_INTERNAL_HOSTNAME')
 
 ALLOWED_HOSTS = []
 
@@ -87,16 +87,10 @@ WSGI_APPLICATION = 'manage_landing.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': 
-    dj_database_url.config(
-        default ='postgresql://postgres:postgres@db:5432/railway',
-        conn_max_age=600
-    ) # Replace this value with your local database's connection string.
-
-    #{ 'ENGINE': 'django.db.backends.sqlite3',
-    #   NAME': BASE_DIR / 'db.sqlite3', }
-}
-
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    # 'default': { 'ENGINE': 'django.db.backends.sqlite3',
+    #             'NAME': BASE_DIR / 'db.sqlite3'
+                }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -136,6 +130,10 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Habilitar compresión y caching para mejorar rendimiento
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
