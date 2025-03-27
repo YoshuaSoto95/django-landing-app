@@ -4,4 +4,4 @@ set -o errexit
 
 python manage.py collectstatic --noinput
 python manage.py migrate
-python manage.py shell < init_superuser.py
+python manage.py runscript init_superuser
